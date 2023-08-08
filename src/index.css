@@ -1,0 +1,32 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: rgb(42, 46, 49);
+    color: #fff;
+}
+
+@media screen and (max-width: 600px) {
+    .searchBox {
+        padding: 1rem 1.75rem;
+        width: 100%;
+    }
+}
+
+.card img{
+    max-height: 350px !important;
+    object-fit: cover;
+}
+
+/* .card {
+    
+} */
+
+.card .details {
+    position: absolute;
+    z-index: 1;
+    bottom: 0px;
+}
