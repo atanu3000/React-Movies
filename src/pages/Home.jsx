@@ -12,19 +12,21 @@ export default function Home() {
         title = title.trim();
         const respone = await fetch(`${apiURL}&s=${title}`);
         const data = await respone.json();
-        if (!data.Search) {
-            setSearchError(true);
-        } 
+        
         if (data.Response === 'True') {
             setMovies(data.Search);
+            setSearchError(false);
         }
+        if (data.Response === 'False') {
+            setMovies([]);
+            setSearchError(true);
+        } 
     }
     return (
         <>
-        {/* {console.log(movies)} */}
             <h1 className="text-center my-5">Movie Search</h1>
             <SearchBox searchMovies={searchMovies}/>
-            {movies.length > 0 ? (
+            {(!searchError && movies.length > 0) ? (
                 <div className=" movies d-flex justify-content-center flex-wrap py-4">
                     {movies.map(movie => {
                         return <MovieCard key={movie.imdbID} movie={movie}/>
@@ -35,9 +37,6 @@ export default function Home() {
                     <div className="text-center mt-5"><h3>No Movies Found</h3></div>
                 )
             )}
-            
-
-            
         </>
     );
 }
